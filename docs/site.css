@@ -47,7 +47,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--gold); outline-
 .hero-inner { min-height: 555px; padding-block: 83px 95px; display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(340px, .92fr); gap: 78px; align-items: center; }
 .eyebrow { color: var(--gold); font: 700 .72rem/1.5 var(--mono); text-transform: uppercase; letter-spacing: .13em; }
 .eyebrow::before { content: ""; display: inline-block; vertical-align: 3px; width: 17px; height: 1px; margin-right: 11px; background: var(--gold); }
-.hero h1 { margin: 23px 0 20px; font-size: clamp(3.85rem, 7vw, 6.1rem); font-weight: 850; line-height: .99; letter-spacing: -.075em; white-space: nowrap; }
+.hero h1 { margin: 23px 0 20px; font-size: clamp(3.85rem, 7vw, 6.1rem); font-weight: 850; line-height: .99; letter-spacing: -.075em; white-space: normal; }
 .hero h1 span { color: var(--gold); }
 .hero .lead { font-size: clamp(1.2rem, 2vw, 1.45rem); line-height: 1.4; letter-spacing: -.02em; font-weight: 650; margin: 0 0 17px; max-width: 26ch; }
 .hero .support { max-width: 49ch; color: var(--muted); margin: 0; font-size: .98rem; }
