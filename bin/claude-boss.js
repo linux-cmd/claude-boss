@@ -3,6 +3,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { claudeExecutable, pluginPlan, repairPlugins, stage } from '../lib/plugins.js';
+import { serveWorkspace } from '../lib/dashboard.js';
 import { sessions, watch } from '../lib/watch.js';
 import { progress } from '../lib/progress.js';
 import { catalogView } from '../lib/catalog.js';
@@ -41,10 +42,10 @@ const save = (file, value) => {
   }
 };
 const json = (file, object) => save(file, JSON.stringify(object,null,2)+'\n');
-function main() {
+async function main() {
   const [command='help', profile='balanced', ...args] = process.argv.slice(2);
   if (command === 'help' || command === '--help') {
-    console.log('claude-boss setup [economy|balanced|quality]\nclaude-boss status\nclaude-boss audit\nclaude-boss catalog [query]\nclaude-boss explain <task>\nclaude-boss plugin-plan <task>\nclaude-boss plugin-repair\nclaude-boss compare <baseline.jsonl> <candidate.jsonl>\nclaude-boss sessions\nclaude-boss watch [--session <file>] [--plan <file>] [--once]\nclaude-boss progress <session.jsonl> [--watch] [--plan <checklist.md>]\nclaude-boss route <task>\nclaude-boss restore\nclaude-boss run <profile> [prompt]');
+    console.log('claude-boss setup [economy|balanced|quality]\nclaude-boss status\nclaude-boss audit\nclaude-boss catalog [query]\nclaude-boss explain <task>\nclaude-boss plugin-plan <task>\nclaude-boss plugin-repair\nclaude-boss compare <baseline.jsonl> <candidate.jsonl>\nclaude-boss sessions\nclaude-boss dashboard\nclaude-boss watch [--session <file>] [--plan <file>] [--once]\nclaude-boss progress <session.jsonl> [--watch] [--plan <checklist.md>]\nclaude-boss route <task>\nclaude-boss restore\nclaude-boss run <profile> [prompt]');
     return;
   }
   if (command === 'run') {
@@ -84,6 +85,12 @@ function main() {
   }
   if (command === 'sessions') {
     console.log(JSON.stringify(sessions(dir).slice(0,10),null,2));
+    return;
+  }
+  if (command === 'dashboard') {
+    if (process.argv.length !== 3) throw Error('Usage: claude-boss dashboard');
+    const {ready} = serveWorkspace(dir);
+    console.log('Open this local dashboard: '+await ready);
     return;
   }
   if (command === 'watch') {
@@ -185,4 +192,4 @@ function main() {
   }
   throw Error('Unknown command. Run claude-boss help.');
 }
-try { main(); } catch (error) { console.error('Claude BOSS: '+error.message); process.exitCode=1; }
+main().catch(error => { console.error('Claude BOSS: '+error.message); process.exitCode=1; });
