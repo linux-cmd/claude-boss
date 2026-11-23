@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.4.0
+
+- Added interactive terminal watch with session switching and milestone snapshots.
+- Added project-aware React routing for UI implementation tasks.
+
 ## 0.3.0
 
 - Added local session discovery and live progress monitoring.

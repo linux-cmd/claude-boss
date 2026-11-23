@@ -8,7 +8,7 @@ A portable CLI for choosing Claude Code defaults and loading task-specific guida
 
 ## Install on Windows or Linux
 
-    npm install -g https://github.com/linux-cmd/claude-boss/releases/download/v0.3.0/claude-boss-0.3.0.tgz
+    npm install -g https://github.com/linux-cmd/claude-boss/releases/download/v0.4.0/claude-boss-0.4.0.tgz
     claude-boss setup balanced
     claude-boss status
 
@@ -42,3 +42,7 @@ Ask Claude for a Markdown checklist in the regular planning turn. For a Jarvis p
 
 The monitor makes no model calls. It reports observed tool results, returned skill calls, token counters and checked milestones. It counts main-session assistant messages with usage in up to 16 MiB of transcript and flags partial reads. Milestone percentage counts checklist items. Pro credits, total projected cost, and ETA are unavailable.
 
+
+## Terminal dashboard
+
+Run `claude-boss watch` from the same project in a separate pane. Use `[` and `]` to switch sessions and `q` to quit. It reads BUILD_PLAN.md if present. Use `--plan` for another checklist, `--session` to pin a transcript and `--once` for a snapshot. Session matching uses the local Claude project directory naming convention.
