@@ -90,10 +90,12 @@ test('free skill package has a standalone entrypoint and truthful marketplace st
   assert.match(skill, /^---\r?\nname: claude-boss-workflow\r?\n/m);
   assert.match(skill, /instruction-only/i);
   assert.match(listing, /FREE \(\$0\)/);
-  assert.match(listing, /NOT PUBLISHED/);
+  assert.match(listing, /PENDING REVIEW/);
   assert.match(homepage, /id="free-skill"/);
-  assert.match(homepage, /Agensi marketplace submission is pending/);
-  assert.match(readme, /Agensi publication status/);
+  assert.match(homepage, /Marketplace review pending/);
+  assert.match(readme, /Agensi status/);
+  assert.match(readme, /Marketplace review is pending/);
+  assert.ok(homepage.includes('https://agensi.io/skills/claude-boss-workflow'));
   for (const reference of ['cli.md', 'verification.md']) {
     assert.ok(fs.existsSync(path.join(root, 'agensi/claude-boss-workflow/references', reference)));
   }

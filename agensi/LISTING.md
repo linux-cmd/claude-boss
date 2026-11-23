@@ -1,4 +1,4 @@
-# Agensi listing draft — NOT PUBLISHED
+# Agensi listing | SUBMITTED, PENDING REVIEW
 
 ## Product
 **CLAUDE BOSS Workflow**
@@ -8,6 +8,10 @@
 **Category:** Agents & Orchestration (`agents-orchestration`)
 **Author credit:** Abhijay Panwar
 **Version:** 1.0
+**Agensi URL:** https://agensi.io/skills/claude-boss-workflow
+**Listing ID:** `1184f774-18c3-497c-84cb-4bd8dedf5b08`
+**Security status:** Passed
+**Marketplace review:** Pending; not yet confirmed live
 
 **One-line summary:** Choose Claude Code profiles, route tasks to relevant skills and verify progress with a practical, portable workflow.
 
@@ -60,13 +64,14 @@ agents-orchestration; llm-ops; prompt-skill-engineering; productivity
 
 **Is it affiliated with Anthropic?** No. It is an independent project built by Abhijay Panwar.
 
-## Publish checklist — blocked until creator eligibility is confirmed
+## Submission checklist
 
-- [x] Creator account has free-listing capability enabled.
-- [x] Price $0 and listing copy prepared.
-- [x] SKILL.md and references prepared.
-- [ ] Agensi confirms an approved account-holder arrangement for under-18 project author.
-- [ ] Authorized eligible account holder reviews the draft and publishing terms.
-- [ ] Submit listing using that compliant account.
-- [ ] Await Agensi review, then verify the listing URL and status.
-- [ ] Update marketing links to the actual verified listing.
+- [x] Free-listing capability enabled on connected creator account.
+- [x] Creator reviewed and approved the exact $0, non-exclusive listing preview.
+- [x] Submitted the three-file skill package to Agensi.
+- [x] Automatic security scan passed.
+- [x] Uploaded a PNG CLAUDE BOSS logo after Agensi rejected the original SVG format.
+- [x] Added the assigned Agensi URL to the project website and README, clearly marked pending.
+- [ ] Agensi completes marketplace review and marks the listing live.
+- [ ] Verify public visibility and then release the final launch announcement.
+- [ ] Collect and address authentic community feedback.

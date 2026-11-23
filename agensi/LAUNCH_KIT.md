@@ -1,6 +1,6 @@
 # CLAUDE BOSS — free skill launch kit
 
-Status: **public source preview available; Agensi listing not yet published**. Do not claim Agensi endorsement, approval, featured placement or an official partnership.
+Status: **submitted to Agensi; security passed; marketplace review pending**. Assigned listing URL: https://agensi.io/skills/claude-boss-workflow. The public GitHub source preview is available now. Do not claim Agensi endorsement, approval, featured placement or a live listing until the review has completed.
 
 ## Positioning
 
@@ -26,7 +26,7 @@ The skill works as standalone instructions. The original CLAUDE BOSS CLI is opti
 
 Built by Abhijay Panwar. Independent project; not affiliated with Anthropic.
 
-*When Agensi publishes the listing, add its verified URL. Until then, do not say 'available on Agensi'.*
+*Agensi listing is currently pending review at https://agensi.io/skills/claude-boss-workflow. When review is approved, replace this note with the verified public listing URL and a confirmed-live statement.*
 
 ## Short post
 
@@ -41,7 +41,7 @@ I recently put together a free Claude Code workflow skill. I'd value feedback on
 ## Promotion channel sequence
 
 1. **Now:** GitHub README + Vercel website link to the public free preview.
-2. **After eligibility clearance and approval:** verified Agensi listing URL, and possibly a marketplace launch announcement with Joeri's permission.
+2. **After marketplace approval:** verify the Agensi listing is public, then announce it with the verified listing link; ask Joeri about optional featured placement.
 3. **Then:** one concrete demonstration comparing a bounded workflow with before/after evidence, clearly separating observed outcomes from estimates.
 4. **Ongoing:** collect legitimate issues and feedback, fix documentation, and maintain the compatibility notes.
 

@@ -1,14 +1,14 @@
-# CLAUDE BOSS Workflow — Agensi preparation
+# CLAUDE BOSS Workflow | Agensi listing
 
 This directory contains a **free, non-exclusive, instruction-only** marketplace skill prepared by the CLAUDE BOSS project.
 
 - [SKILL.md](claude-boss-workflow/SKILL.md) — the portable skill's core instructions
 - [CLI companion](claude-boss-workflow/references/cli.md) — optional Claude Code commands
 - [Verification checklist](claude-boss-workflow/references/verification.md) — evidence and safety checks
-- [Agensi listing draft](LISTING.md) — $0 listing copy, requirements, FAQs and publication status
+- [Agensi listing details](LISTING.md) — $0 listing copy, requirements, FAQs and review status
 - [Launch kit](LAUNCH_KIT.md) — truthful promotional copy
 
-**Status:** Source-preview package available via GitHub. It is **not currently an approved or published Agensi marketplace listing**. Agensi's age-eligibility requirements must be resolved before submission.
+**Status:** Submitted to [Agensi](https://agensi.io/skills/claude-boss-workflow) on November 23, 2026 for **Free ($0)**. Agensi's automated security scan **passed**; marketplace review is **pending**, so public listing visibility is not yet confirmed. The source files are available in this repository. Listing ID: `1184f774-18c3-497c-84cb-4bd8dedf5b08`.
 
 **Built by Abhijay Panwar.** CLAUDE BOSS is independent tooling, not affiliated with Anthropic. This directory does not grant a separate license to proprietary components, and the full CLI is not included in the Agensi skill package.
 
