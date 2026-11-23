@@ -6,6 +6,12 @@ A portable CLI for choosing Claude Code defaults and loading task-specific guida
 
 [Website](https://claude-boss.vercel.app/) · [Releases](https://github.com/linux-cmd/claude-boss/releases) · [Codex guide](CODEX.md)
 
+## Free CLAUDE BOSS Workflow skill
+
+The [free, portable CLAUDE BOSS Workflow skill](agensi/claude-boss-workflow/SKILL.md) is available to read and use from this repository. It provides model-profile recommendations, focused skill/tool selection and evidence-based verification guidance. It is **instruction-only**; the CLI is a separate optional installation.
+
+**Agensi publication status:** Marketplace submission is pending creator-account eligibility confirmation and review. The skill is **not yet listed on Agensi**. See the [Agensi preparation and listing details](agensi/README.md) and [launch materials](agensi/LAUNCH_KIT.md).
+
 ## Install on Windows or Linux
 
     npm install -g https://github.com/linux-cmd/claude-boss/releases/download/v0.7.0/claude-boss-0.7.0.tgz

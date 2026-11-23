@@ -81,3 +81,20 @@ test('tab titles prioritize the product and clearly identify each page', () => {
     assert.ok(title.length <= 45, `${file}: title is too verbose`);
   }
 });
+
+test('free skill package has a standalone entrypoint and truthful marketplace status', () => {
+  const skill = read('agensi/claude-boss-workflow/SKILL.md');
+  const listing = read('agensi/LISTING.md');
+  const homepage = read('docs/index.html');
+  const readme = read('README.md');
+  assert.match(skill, /^---\r?\nname: claude-boss-workflow\r?\n/m);
+  assert.match(skill, /instruction-only/i);
+  assert.match(listing, /FREE \(\$0\)/);
+  assert.match(listing, /NOT PUBLISHED/);
+  assert.match(homepage, /id="free-skill"/);
+  assert.match(homepage, /Agensi marketplace submission is pending/);
+  assert.match(readme, /Agensi publication status/);
+  for (const reference of ['cli.md', 'verification.md']) {
+    assert.ok(fs.existsSync(path.join(root, 'agensi/claude-boss-workflow/references', reference)));
+  }
+});
