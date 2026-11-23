@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.7.0
+
+- Added plugin dry runs, pinning, mutation journals and repair.
+- Verify registry and project-local state after native Claude operations.
+- Fixed launcher resolution for Windows npm installs.
+
 ## 0.6.0
 
 - Added opt-in project-local plugin rotation with ownership checks.
