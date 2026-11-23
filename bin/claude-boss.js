@@ -2,7 +2,7 @@
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-import { stage } from '../lib/plugins.js';
+import { claudeExecutable, pluginPlan, repairPlugins, stage } from '../lib/plugins.js';
 import { sessions, watch } from '../lib/watch.js';
 import { progress } from '../lib/progress.js';
 import { inventory, route } from '../lib/router.js';
@@ -43,7 +43,7 @@ const json = (file, object) => save(file, JSON.stringify(object,null,2)+'\n');
 function main() {
   const [command='help', profile='balanced', ...args] = process.argv.slice(2);
   if (command === 'help' || command === '--help') {
-    console.log('claude-boss setup [economy|balanced|quality]\nclaude-boss status\nclaude-boss audit\nclaude-boss compare <baseline.jsonl> <candidate.jsonl>\nclaude-boss sessions\nclaude-boss watch [--session <file>] [--plan <file>] [--once]\nclaude-boss progress <session.jsonl> [--watch] [--plan <checklist.md>]\nclaude-boss route <task>\nclaude-boss restore\nclaude-boss run <profile> [prompt]');
+    console.log('claude-boss setup [economy|balanced|quality]\nclaude-boss status\nclaude-boss audit\nclaude-boss plugin-plan <task>\nclaude-boss plugin-repair\nclaude-boss compare <baseline.jsonl> <candidate.jsonl>\nclaude-boss sessions\nclaude-boss watch [--session <file>] [--plan <file>] [--once]\nclaude-boss progress <session.jsonl> [--watch] [--plan <checklist.md>]\nclaude-boss route <task>\nclaude-boss restore\nclaude-boss run <profile> [prompt]');
     return;
   }
   if (command === 'run') {
@@ -55,10 +55,17 @@ function main() {
     const flags = ['--model',profiles[profile].model,'--effort',profiles[profile].effortLevel,...args];
     // Avoid cmd.exe interpolation. The native Claude Code installer provides claude.exe.
     let result;
-    try { result = spawnSync(process.platform === 'win32' ? 'claude.exe' : 'claude', flags, {stdio:'inherit'}); }
+    try { result = spawnSync(claudeExecutable(), flags, {stdio:'inherit'}); }
     finally { unlock?.(); }
     if (result.error) throw Error('Could not start Claude Code. Install the native CLI and add it to PATH.');
     process.exitCode = result.status ?? 1;
+    return;
+  }
+  if (command === 'plugin-plan' || command === 'plugin-repair') {
+    const prompt = process.argv.slice(3).join(' ');
+    if (command === 'plugin-plan' && !prompt.trim()) throw Error('Usage: claude-boss plugin-plan <task>');
+    if (command === 'plugin-repair' && prompt) throw Error('Usage: claude-boss plugin-repair');
+    console.log(JSON.stringify(command === 'plugin-plan' ? pluginPlan(dir,prompt) : repairPlugins(dir),null,2));
     return;
   }
   if (command === 'compare') {

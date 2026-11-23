@@ -8,7 +8,7 @@ A portable CLI for choosing Claude Code defaults and loading task-specific guida
 
 ## Install on Windows or Linux
 
-    npm install -g https://github.com/linux-cmd/claude-boss/releases/download/v0.6.0/claude-boss-0.6.0.tgz
+    npm install -g https://github.com/linux-cmd/claude-boss/releases/download/v0.7.0/claude-boss-0.7.0.tgz
     claude-boss setup balanced
     claude-boss status
 
@@ -65,3 +65,7 @@ Supported intents are design, verification, billing, deployment, and database. A
 Run comparable tasks in clean sessions with the same model, effort and test conditions, first without BOSS and then with it. Verify both results against the same acceptance checks. Repeat cold and warm runs several times. Compare each pair with claude-boss compare baseline.jsonl candidate.jsonl. It reports raw token deltas by counter. Evaluate quality and variance before drawing a conclusion. Pro subscription quota, projected credits and ETA are unavailable.
 
 For automatic rotation, set `"rotateOwned": true` in the policy. At launch, BOSS can re-enable its own matching local plugins and disable its own unrelated local plugins. Leave rotation off if you also run Claude directly in the same project. BOSS serializes its own managed launches, and cannot detect unrelated native sessions. If a process is killed and a lock remains, remove the ownership lock only after confirming no managed launch is active. Watch identifies MCP servers from returned calls.
+
+## Preview and repair plugin changes
+
+Run `claude-boss plugin-plan "Redesign the dashboard"` for the selected IDs, local inventory, and proposed actions without mutating state. Add IDs to `pinnedPlugins` in the policy to exempt them from automatic disabling. BOSS journals each action before invoking Claude and checks native registry and local settings afterward. If interrupted, run `claude-boss plugin-repair` from the affected worktree. It reports the observed state and clears the journal without inferring ownership or rolling back changes. If a stale ownership lock remains, confirm the launcher has exited before removing it. Local configuration does not establish that a running session loaded a plugin.
