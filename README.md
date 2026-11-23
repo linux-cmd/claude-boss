@@ -14,7 +14,7 @@ The [free, portable CLAUDE BOSS Workflow skill](agensi/claude-boss-workflow/SKIL
 
 ## Install on Windows or Linux
 
-    npm install -g https://github.com/linux-cmd/claude-boss/releases/download/v0.9.0/claude-boss-0.9.0.tgz
+    npm install -g https://github.com/linux-cmd/claude-boss/releases/download/v1.0.0-rc.1/claude-boss-1.0.0-rc.1.tgz
     claude-boss setup balanced
     claude-boss status
 
@@ -46,7 +46,7 @@ Run claude-boss sessions to find a transcript, then:
 
 Ask Claude for a Markdown checklist in the regular planning turn. For a Jarvis project, include architecture, a visual mockup, the core interaction, integrations, and end-to-end verification. Have Claude check each item after verifying it and record short decision notes and blockers in the plan. Open the local UI preview as soon as one exists.
 
-The monitor makes no model calls. It reports observed tool results, returned skill calls, token counters and checked milestones. It counts main-session assistant messages with usage in up to 16 MiB of transcript and flags partial reads. Milestone percentage counts checklist items. Pro credits, total projected cost, and ETA are unavailable.
+The monitor makes no model calls. It reports observed tool results, returned skill calls, token counters and checked milestones. It counts main-session assistant messages with usage across the full transcript, skipping individual records larger than 16 MiB and flags partial reads. Milestone percentage counts checklist items. Pro credits, total projected cost, and ETA are unavailable.
 
 
 ## Terminal dashboard
@@ -87,3 +87,8 @@ Catalog matches are advisory. In an open Claude session follow Claude's document
 ## Local browser dashboard
 
 Run claude-boss dashboard from the same project directory as Claude Code and open the printed local URL. It shows matching sessions, checklist progress, tool outcomes, token counters, Git working-tree changes and reported workspace notes. It listens on 127.0.0.1 only, uses a private URL, and sends no model requests. Keep the URL local. Press Ctrl+C to close it.
+
+
+## Benchmark a batch of matched tasks
+
+Run claude-boss benchmark pairs.json. Paths are relative to the manifest. Each array entry has baseline, candidate, baselinePassed and candidatePassed. Assign pass/fail using the same independent acceptance checks before comparing usage. Use equivalent tasks, model, effort and cache conditions. The report gives pass counts and median/range token deltas for pairs that both passed. It does not run Claude, infer correctness, or estimate Pro quota. Stable 1.0 savings claims require controlled live benchmarks.

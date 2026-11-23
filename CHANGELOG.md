@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.0-rc.1
+
+- Added incremental transcript reading and paired benchmark summaries.
+- Stable release and Claude Pro savings claims are pending controlled live results.
+
 ## 0.9.0
 
 - Added an opt-in local browser dashboard scoped to the current workspace.
