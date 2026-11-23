@@ -2,6 +2,7 @@
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
+import { progress } from '../lib/progress.js';
 import { inventory, route } from '../lib/router.js';
 import { spawnSync } from 'node:child_process';
 
@@ -40,7 +41,7 @@ const json = (file, object) => save(file, JSON.stringify(object,null,2)+'\n');
 function main() {
   const [command='help', profile='balanced', ...args] = process.argv.slice(2);
   if (command === 'help' || command === '--help') {
-    console.log('claude-boss setup [economy|balanced|quality]\nclaude-boss status\nclaude-boss audit\nclaude-boss route <task>\nclaude-boss restore\nclaude-boss run <profile> [prompt]');
+    console.log('claude-boss setup [economy|balanced|quality]\nclaude-boss status\nclaude-boss audit\nclaude-boss sessions\nclaude-boss progress <session.jsonl> [--watch] [--plan <checklist.md>]\nclaude-boss route <task>\nclaude-boss restore\nclaude-boss run <profile> [prompt]');
     return;
   }
   if (command === 'run') {
@@ -50,6 +51,36 @@ function main() {
     const result = spawnSync(process.platform === 'win32' ? 'claude.exe' : 'claude', flags, {stdio:'inherit'});
     if (result.error) throw Error('Could not start Claude Code. Install the native CLI and add it to PATH.');
     process.exitCode = result.status ?? 1;
+    return;
+  }
+  if (command === 'sessions') {
+    const projects = path.join(dir,'projects');
+    const entries = fs.existsSync(projects) ? fs.readdirSync(projects,{withFileTypes:true}) : [];
+    const sessions = entries.filter(item => item.isDirectory()).flatMap(item => {
+      const folder = path.join(projects,item.name);
+      return fs.readdirSync(folder,{withFileTypes:true}).filter(file => file.isFile() && file.name.endsWith('.jsonl'))
+        .map(file => { const full = path.join(folder,file.name); return {path:full,updated:fs.statSync(full).mtimeMs}; });
+    });
+    console.log(JSON.stringify(sessions.sort((a,b) => b.updated-a.updated).slice(0,10),null,2));
+    return;
+  }
+  if (command === 'progress') {
+    const [file,...options] = process.argv.slice(3);
+    if (!file) throw Error('Usage: claude-boss progress <session.jsonl> [--watch] [--plan <checklist.md>]');
+    const planIndex = options.indexOf('--plan');
+    const plan = planIndex < 0 ? undefined : options[planIndex+1];
+    if (planIndex >= 0 && !plan) throw Error('--plan requires a checklist file.');
+    const watch = options.includes('--watch');
+    let previous;
+    const render = () => {
+      const next = JSON.stringify(progress(file,plan),null,2);
+      if (next === previous) return;
+      if (watch && process.stdout.isTTY) console.clear();
+      console.log(next);
+      previous = next;
+    };
+    render();
+    if (watch) setInterval(() => { try { render(); } catch (error) { console.error(error.message); } }, 2500);
     return;
   }
   if (command === 'audit' || command === 'route') {

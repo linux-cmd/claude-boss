@@ -8,7 +8,7 @@
 
 ## Install on Windows or Linux
 
-    npm install -g https://github.com/linux-cmd/claude-boss/releases/download/v0.2.0/claude-boss-0.2.0.tgz
+    npm install -g https://github.com/linux-cmd/claude-boss/releases/download/v0.3.0/claude-boss-0.3.0.tgz
     claude-boss setup balanced
     claude-boss status
 
@@ -31,3 +31,14 @@ See NEXT_VERSION_PLAN.md for planned marketplace staging, verified usage reporti
 ## Creator
 
 Claude BOSS is independently developed by **Abhijay Panwar** and is not affiliated with Anthropic.
+
+## Watch a build from a second terminal
+
+Run claude-boss sessions to find a transcript, then:
+
+    claude-boss progress "path/to/session.jsonl" --watch --plan BUILD_PLAN.md
+
+Ask Claude for a Markdown checklist in the regular planning turn. For a Jarvis project, include architecture, a visual mockup, the core interaction, integrations, and end-to-end verification. Have Claude check each item after verifying it and record short decision notes and blockers in the plan. Open the local UI preview as soon as one exists.
+
+The monitor makes no model calls. It reports observed tool results, returned skill calls, token counters and checked milestones. It counts main-session assistant messages with usage in up to 16 MiB of transcript and flags partial reads. Milestone percentage counts checklist items. Pro credits, total projected cost, and ETA are unavailable.
+

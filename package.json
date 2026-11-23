@@ -1,6 +1,6 @@
 {
   "name": "claude-boss",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Abhijay Panwar's Claude BOSS — portable Claude Code profiles and skill routing",
   "type": "module",
   "bin": {

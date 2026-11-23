@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.3.0
+
+- Added local session discovery and live progress monitoring.
+- Shows tool outcomes, observed token counters and optional checklist completion without a model call.
+
 ## 0.2.0
 
 - Added a local inventory of configured plugin and skill candidates.
@@ -13,3 +18,4 @@ Routing suggests installed skills by task. It does not install marketplace plugi
 ## 0.1.0
 
 - Added three model profiles, a routing skill, and reversible settings.
+
