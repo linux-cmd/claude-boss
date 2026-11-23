@@ -16,5 +16,8 @@
     "lib",
     "CHANGELOG.md"
   ],
-  "repository": "github:linux-cmd/claude-boss"
+  "repository": "github:linux-cmd/claude-boss",
+  "scripts": {
+    "test": "node --test"
+  }
 }
