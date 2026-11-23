@@ -1,10 +1,10 @@
-![Abhijay Panwar's Claude BOSS](docs/brand-banner.svg)
+![CLAUDE BOSS](docs/brand-banner.svg)
 
-# Abhijay Panwar's Claude BOSS
+# CLAUDE BOSS
 
-**Created by Abhijay Panwar.** A portable CLI for choosing Claude Code defaults and loading task-specific guidance. Requires Node.js 20+ and the native Claude Code CLI on PATH for the launcher.
+A portable CLI for choosing Claude Code defaults and loading task-specific guidance. Requires Node.js 20+ and the native Claude Code CLI on PATH for the launcher.
 
-[Website](https://linux-cmd.github.io/claude-boss/) · [Releases](https://github.com/linux-cmd/claude-boss/releases) · [Codex guide](CODEX.md)
+[Website](https://claude-boss.vercel.app/) · [Releases](https://github.com/linux-cmd/claude-boss/releases) · [Codex guide](CODEX.md)
 
 ## Install on Windows or Linux
 
@@ -28,9 +28,9 @@ After setup and restart, type a normal prompt. The local hook ranks relevant ins
 
 See NEXT_VERSION_PLAN.md for planned marketplace staging, verified usage reporting and benchmarking.
 
-## Creator
+## Credits
 
-Claude BOSS is independently developed by **Abhijay Panwar** and is not affiliated with Anthropic.
+**Built by Andre.** CLAUDE BOSS is an independent project and is not affiliated with Anthropic.
 
 ## Watch a build from a second terminal
 

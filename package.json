@@ -1,7 +1,7 @@
 {
   "name": "claude-boss",
   "version": "0.3.0",
-  "description": "Abhijay Panwar's Claude BOSS — portable Claude Code profiles and skill routing",
+  "description": "CLAUDE BOSS — Claude Code profiles, local skill routing, and session progress",
   "type": "module",
   "bin": {
     "claude-boss": "bin/claude-boss.js"
@@ -20,5 +20,5 @@
   "scripts": {
     "test": "node --test"
   },
-  "author": "Abhijay Panwar"
+  "author": "Andre"
 }
