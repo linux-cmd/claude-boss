@@ -1,6 +1,6 @@
 {
   "name": "claude-boss",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Portable Claude Code optimization profiles and task routing",
   "type": "module",
   "bin": {
