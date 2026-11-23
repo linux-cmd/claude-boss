@@ -5,6 +5,7 @@ import path from 'node:path';
 import { claudeExecutable, pluginPlan, repairPlugins, stage } from '../lib/plugins.js';
 import { serveWorkspace } from '../lib/dashboard.js';
 import { sessions, watch } from '../lib/watch.js';
+import { benchmark } from '../lib/benchmark.js';
 import { progress } from '../lib/progress.js';
 import { catalogView } from '../lib/catalog.js';
 import { explainRoute, inventory, route } from '../lib/router.js';
@@ -45,7 +46,7 @@ const json = (file, object) => save(file, JSON.stringify(object,null,2)+'\n');
 async function main() {
   const [command='help', profile='balanced', ...args] = process.argv.slice(2);
   if (command === 'help' || command === '--help') {
-    console.log('claude-boss setup [economy|balanced|quality]\nclaude-boss status\nclaude-boss audit\nclaude-boss catalog [query]\nclaude-boss explain <task>\nclaude-boss plugin-plan <task>\nclaude-boss plugin-repair\nclaude-boss compare <baseline.jsonl> <candidate.jsonl>\nclaude-boss sessions\nclaude-boss dashboard\nclaude-boss watch [--session <file>] [--plan <file>] [--once]\nclaude-boss progress <session.jsonl> [--watch] [--plan <checklist.md>]\nclaude-boss route <task>\nclaude-boss restore\nclaude-boss run <profile> [prompt]');
+    console.log('claude-boss setup [economy|balanced|quality]\nclaude-boss status\nclaude-boss audit\nclaude-boss catalog [query]\nclaude-boss explain <task>\nclaude-boss plugin-plan <task>\nclaude-boss plugin-repair\nclaude-boss benchmark <pairs.json>\nclaude-boss compare <baseline.jsonl> <candidate.jsonl>\nclaude-boss sessions\nclaude-boss dashboard\nclaude-boss watch [--session <file>] [--plan <file>] [--once]\nclaude-boss progress <session.jsonl> [--watch] [--plan <checklist.md>]\nclaude-boss route <task>\nclaude-boss restore\nclaude-boss run <profile> [prompt]');
     return;
   }
   if (command === 'run') {
@@ -70,12 +71,17 @@ async function main() {
     console.log(JSON.stringify(command === 'plugin-plan' ? pluginPlan(dir,prompt) : repairPlugins(dir),null,2));
     return;
   }
+  if (command === 'benchmark') {
+    if (process.argv.length !== 4) throw Error('Usage: claude-boss benchmark <pairs.json>');
+    console.log(JSON.stringify(benchmark(process.argv[3]),null,2));
+    return;
+  }
   if (command === 'compare') {
     const [baseline,candidate,...extra] = process.argv.slice(3);
     if (!baseline || !candidate || extra.length) throw Error('Usage: claude-boss compare <baseline.jsonl> <candidate.jsonl>');
     const a = progress(baseline);
     const b = progress(candidate);
-    if (a.partial || b.partial) throw Error('Comparison requires complete transcripts within the 16 MiB read limit.');
+    if (a.partial || b.partial) throw Error('Comparison requires transcripts without skipped data.');
     const changes = Object.fromEntries(Object.keys(a.tokens).map(key => {
       const before = a.tokens[key], after = b.tokens[key];
       return [key,{before,after,delta:before == null || after == null ? null : after-before}];
