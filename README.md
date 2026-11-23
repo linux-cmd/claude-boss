@@ -1,6 +1,10 @@
-# Claude BOSS
+![Abhijay Panwar's Claude BOSS](docs/brand-banner.svg)
 
-A portable CLI for choosing Claude Code defaults and loading task-specific guidance. Requires Node.js 20+ and the native Claude Code CLI on PATH for the launcher.
+# Abhijay Panwar's Claude BOSS
+
+**Created by Abhijay Panwar.** A portable CLI for choosing Claude Code defaults and loading task-specific guidance. Requires Node.js 20+ and the native Claude Code CLI on PATH for the launcher.
+
+[Website](https://linux-cmd.github.io/claude-boss/) · [Releases](https://github.com/linux-cmd/claude-boss/releases) · [Codex guide](CODEX.md)
 
 ## Install on Windows or Linux
 
@@ -23,3 +27,7 @@ The original personal setup was not tracked in Git. Public development history b
 After setup and restart, type a normal prompt. The local hook ranks relevant installed skill candidates. Run claude-boss audit to inspect its local inventory and claude-boss route "redesign the dashboard" to preview a decision. Claude decides whether to invoke a suggested skill and should report actual use. The inventory represents local configuration, which may differ from availability under managed policy.
 
 See NEXT_VERSION_PLAN.md for planned marketplace staging, verified usage reporting and benchmarking.
+
+## Creator
+
+Claude BOSS is independently developed by **Abhijay Panwar** and is not affiliated with Anthropic.

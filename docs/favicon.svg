@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title id="title">Abhijay Panwar — Claude BOSS</title>
+  <defs>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffe28a"/>
+      <stop offset="1" stop-color="#f8c755"/>
+    </linearGradient>
+  </defs>
+  <rect x="1.5" y="1.5" width="61" height="61" rx="15" fill="#141515" stroke="#b99437" stroke-width="2"/>
+  <path d="M11.5 48 26 16.5 40.5 48M17.5 35h17" fill="none" stroke="url(#gold)" stroke-width="5.6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M34 18v30M34 18h8c12 0 12 15 0 15h-8" fill="none" stroke="#eee9df" stroke-width="4.9" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M50 9v8M46 13h8" stroke="#f8c755" stroke-width="2" stroke-linecap="round"/>
+</svg>
