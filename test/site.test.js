@@ -23,7 +23,7 @@ test('all HTML pages are product-branded and have a local favicon', () => {
     assert.match(html, /rel="icon" href="\.\/favicon\.svg"/);
     assert.match(html, /rel="stylesheet" href="\.\/site\.css"/);
     assert.match(html, /<main\b[^>]*id="main"/);
-    assert.doesNotMatch(html, /Abhijay Panwar/i);
+    assert.doesNotMatch(html, /Abhijay Panwar['’]s Claude BOSS/i);
   }
 });
 
@@ -39,10 +39,11 @@ test('all same-directory asset and navigation links resolve', () => {
 test('creator credit does not replace the product name', () => {
   const homepage = read('docs/index.html');
   assert.match(homepage, /<h1[^>]*>CLAUDE <span>BOSS\.<\/span><\/h1>/);
-  assert.match(homepage, /Built by <strong>Andre<\/strong>/);
-  assert.doesNotMatch(homepage, /Andre['’]s Claude/i);
+  assert.match(homepage, /Built by <strong>Abhijay Panwar<\/strong>/);
+  assert.doesNotMatch(homepage, /Abhijay Panwar['’]s Claude/i);
+  assert.match(homepage, /hero-byline[^>]*>[\\s\\S]*Built by Abhijay Panwar/);
   assert.equal(pkg.name, 'claude-boss');
-  assert.equal(pkg.author, 'Andre');
+  assert.equal(pkg.author, 'Abhijay Panwar');
 });
 
 test('installation and CLI features match the published package version', () => {
@@ -53,12 +54,13 @@ test('installation and CLI features match the published package version', () => 
   }
 });
 
-test('SVG brand assets are provided and do not contain the old monogram', () => {
+test('SVG brand assets use the CB monogram and correct creator credit', () => {
   const icon = read('docs/favicon.svg');
   const banner = read('docs/brand-banner.svg');
   assert.match(icon, /<svg\b/);
   assert.match(banner, /CLAUDE/);
   assert.match(banner, /BOSS/);
-  assert.match(banner, /ANDRE/);
-  assert.doesNotMatch(icon + banner, /Abhijay Panwar/i);
+  assert.match(banner, /ABHIJAY PANWAR/);
+  assert.doesNotMatch(icon + banner, /\\bAndre\\b/i);
+  assert.match(icon, /#f8c755/);
 });

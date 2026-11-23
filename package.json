@@ -20,5 +20,5 @@
   "scripts": {
     "test": "node --test"
   },
-  "author": "Andre"
+  "author": "Abhijay Panwar"
 }

@@ -49,6 +49,8 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--gold); outline-
 .eyebrow::before { content: ""; display: inline-block; vertical-align: 3px; width: 17px; height: 1px; margin-right: 11px; background: var(--gold); }
 .hero h1 { margin: 23px 0 20px; font-size: clamp(3.85rem, 7vw, 6.1rem); font-weight: 850; line-height: .99; letter-spacing: -.075em; white-space: normal; }
 .hero h1 span { color: var(--gold); }
+.hero-byline { display: flex; align-items: center; gap: 12px; margin: -2px 0 23px; color: var(--muted); font: 650 .7rem/1.6 var(--mono); text-transform: uppercase; letter-spacing: .12em; }
+.hero-byline span { display: inline-block; flex: none; width: 19px; height: 1px; background: var(--gold); opacity: .8; }
 .hero .lead { font-size: clamp(1.2rem, 2vw, 1.45rem); line-height: 1.4; letter-spacing: -.02em; font-weight: 650; margin: 0 0 17px; max-width: 26ch; }
 .hero .support { max-width: 49ch; color: var(--muted); margin: 0; font-size: .98rem; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 31px; }

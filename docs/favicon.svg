@@ -1,6 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
-  <title id="title">Claude BOSS logo</title>
-  <rect x="1.5" y="1.5" width="61" height="61" rx="13.5" fill="#121514" stroke="#f8c755" stroke-width="2.5"/>
-  <path d="M30 17H23L13.5 26.5V37.5L23 47H30" fill="none" stroke="#f0eee8" stroke-width="6" stroke-linecap="square" stroke-linejoin="miter"/>
-  <path d="M34 17V47M34 17H43C50.5 17 50.5 29.5 43 29.5H34M34 29.5H44C52.5 29.5 52.5 47 43 47H34" fill="none" stroke="#f8c755" stroke-width="5.5" stroke-linecap="square" stroke-linejoin="miter"/>
+  <title id="title">CLAUDE BOSS — CB logo</title>
+  <rect x="1.5" y="1.5" width="61" height="61" rx="14" fill="#121514" stroke="#f8c755" stroke-width="2"/>
+  <!-- Angular, interlocking C and B mark adapted from the selected brand concept. -->
+  <path d="M31.6 12.5H23.8L10.3 25.5V38.5L23.8 51.5H31.6V43.9H26.8L18.4 35.7V28.3L26.8 20.1H31.6V12.5Z" fill="#f0eee8"/>
+  <path d="M33.4 13.2H40.1L49.2 21.5V29L45.3 32L50.6 36V43.2L41.7 50.8H33.4V43.7H40.2L43.9 40.4V38.8L40.8 36.5H33.4V29.6H40.4L43.1 27.5V25.4L40 22.3H33.4V13.2Z" fill="#f8c755"/>
 </svg>

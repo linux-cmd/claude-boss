@@ -30,7 +30,7 @@ See NEXT_VERSION_PLAN.md for planned marketplace staging, verified usage reporti
 
 ## Credits
 
-**Built by Andre.** CLAUDE BOSS is an independent project and is not affiliated with Anthropic.
+**Built by Abhijay Panwar.** CLAUDE BOSS is an independent project and is not affiliated with Anthropic.
 
 ## Watch a build from a second terminal
 

@@ -1,16 +1,19 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="300" viewBox="0 0 1200 300" role="img" aria-labelledby="title desc">
-  <title id="title">CLAUDE BOSS</title><desc id="desc">A portable Claude Code companion. Built by Andre.</desc>
-  <rect width="1200" height="300" rx="22" fill="#121514"/>
-  <rect x="1" y="1" width="1198" height="298" rx="21" fill="none" stroke="#353c37" stroke-width="2"/>
-  <path d="M970 0V300M1002 0V300M1034 0V300M1066 0V300M1098 0V300M1130 0V300M1162 0V300" stroke="#242b26" stroke-width="1"/>
-  <g transform="translate(64 74) scale(2.38)">
-    <rect x="1.5" y="1.5" width="61" height="61" rx="13.5" fill="#121514" stroke="#f8c755" stroke-width="2.5"/>
-    <path d="M30 17H23L13.5 26.5V37.5L23 47H30" fill="none" stroke="#f0eee8" stroke-width="6" stroke-linecap="square"/>
-    <path d="M34 17V47M34 17H43C50.5 17 50.5 29.5 43 29.5H34M34 29.5H44C52.5 29.5 52.5 47 43 47H34" fill="none" stroke="#f8c755" stroke-width="5.5" stroke-linecap="square"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="320" viewBox="0 0 1200 320" role="img" aria-labelledby="title desc">
+  <title id="title">CLAUDE BOSS</title>
+  <desc id="desc">The CLI for Claude Code profiles, routing, and progress. Built by Abhijay Panwar.</desc>
+  <rect width="1200" height="320" rx="22" fill="#121514"/>
+  <rect x="1.5" y="1.5" width="1197" height="317" rx="20.5" fill="none" stroke="#353c37" stroke-width="2"/>
+  <path d="M910 0V320M950 0V320M990 0V320M1030 0V320M1070 0V320M1110 0V320M1150 0V320" stroke="#232a25" stroke-width="1"/>
+  <g transform="translate(66 79) scale(2.5)">
+    <rect x="1.5" y="1.5" width="61" height="61" rx="14" fill="#121514" stroke="#f8c755" stroke-width="2"/>
+    <path d="M31.6 12.5H23.8L10.3 25.5V38.5L23.8 51.5H31.6V43.9H26.8L18.4 35.7V28.3L26.8 20.1H31.6V12.5Z" fill="#f0eee8"/>
+    <path d="M33.4 13.2H40.1L49.2 21.5V29L45.3 32L50.6 36V43.2L41.7 50.8H33.4V43.7H40.2L43.9 40.4V38.8L40.8 36.5H33.4V29.6H40.4L43.1 27.5V25.4L40 22.3H33.4V13.2Z" fill="#f8c755"/>
   </g>
-  <path d="M247 74V230" stroke="#353c37" stroke-width="2"/>
-  <text x="284" y="133" fill="#f0eee8" font-size="64" font-weight="800" letter-spacing="-2.5" font-family="Arial, Helvetica, sans-serif">CLAUDE <tspan fill="#f8c755">BOSS</tspan></text>
-  <text x="286" y="176" fill="#b2b9b3" font-size="23" font-family="Arial, Helvetica, sans-serif">A focused companion for Claude Code.</text>
-  <path d="M286 207H332" stroke="#f8c755" stroke-width="3"/>
-  <text x="351" y="215" fill="#b2b9b3" font-size="17" font-family="Arial, Helvetica, sans-serif" letter-spacing="1.3">BUILT BY ANDRE</text>
+  <path d="M259 69V252" stroke="#353c37" stroke-width="2"/>
+  <text x="291" y="136" fill="#f0eee8" font-size="66" font-weight="800" letter-spacing="-3" font-family="Arial, Helvetica, sans-serif">CLAUDE <tspan fill="#f8c755">BOSS</tspan></text>
+  <text x="293" y="180" fill="#b2b9b3" font-size="22" font-family="Arial, Helvetica, sans-serif">Claude Code profiles · Local routing · Session progress</text>
+  <path d="M293 215H345" stroke="#f8c755" stroke-width="2"/>
+  <text x="362" y="221" fill="#f0eee8" font-size="16.5" font-family="Arial, Helvetica, sans-serif" letter-spacing="2.1">BUILT BY ABHIJAY PANWAR</text>
+  <path d="M293 250H745" stroke="#353c37" stroke-width="1"/>
+  <text x="293" y="276" fill="#9aa69f" font-size="13.5" font-family="Arial, Helvetica, sans-serif" letter-spacing="2">PROFILES  ·  ROUTING  ·  VISIBILITY</text>
 </svg>
