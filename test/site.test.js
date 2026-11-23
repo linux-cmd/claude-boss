@@ -94,7 +94,7 @@ test('free skill package has a standalone entrypoint and truthful marketplace st
   assert.match(homepage, /id="free-skill"/);
   assert.match(homepage, /Marketplace review pending/);
   assert.match(readme, /Agensi status/);
-  assert.match(readme, /Marketplace review is pending/);
+  assert.match(readme, /is live as a free instruction-only skill/);
   assert.ok(homepage.includes('https://agensi.io/skills/claude-boss-workflow'));
   for (const reference of ['cli.md', 'verification.md']) {
     assert.ok(fs.existsSync(path.join(root, 'agensi/claude-boss-workflow/references', reference)));

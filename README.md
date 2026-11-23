@@ -10,7 +10,9 @@ A portable CLI for choosing Claude Code defaults and loading task-specific guida
 
 The [free, portable CLAUDE BOSS Workflow skill](agensi/claude-boss-workflow/SKILL.md) is available to read and use from this repository. It provides model-profile recommendations, focused skill/tool selection and evidence-based verification guidance. It is **instruction-only**; the CLI is a separate optional installation.
 
-**Agensi status:** [CLAUDE BOSS Workflow](https://agensi.io/skills/claude-boss-workflow) was submitted as **Free ($0)** and passed the marketplace security scan. **Marketplace review is pending**; the assigned listing URL may not be publicly accessible until approval. The [GitHub skill package](agensi/claude-boss-workflow/SKILL.md) is available now. See the [listing details](agensi/README.md) and [launch materials](agensi/LAUNCH_KIT.md).
+**Agensi status:** [CLAUDE BOSS Workflow](https://agensi.io/skills/claude-boss-workflow) is live as a free instruction-only skill. The [GitHub skill package](agensi/claude-boss-workflow/SKILL.md) is also available.
+
+Try the [v1.0 release](https://github.com/linux-cmd/claude-boss/releases/tag/v1.0.0) and share feedback in the [launch discussion](https://github.com/linux-cmd/claude-boss/discussions/11).
 
 ## Install on Windows or Linux
 
