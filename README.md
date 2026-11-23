@@ -4,7 +4,7 @@ A portable CLI for choosing Claude Code defaults and loading task-specific guida
 
 ## Install on Windows or Linux
 
-    npm install -g https://github.com/linux-cmd/claude-boss/releases/download/v0.1.0/claude-boss-0.1.0.tgz
+    npm install -g https://github.com/linux-cmd/claude-boss/releases/download/v0.2.0/claude-boss-0.2.0.tgz
     claude-boss setup balanced
     claude-boss status
 
@@ -17,3 +17,9 @@ Setup updates model and effort and installs a lightweight routing skill. Project
 Open Codex on the same machine and say **“Optimize Claude Code with Claude BOSS”**, with the repository or [Codex guide](CODEX.md) in context.
 
 The original personal setup was not tracked in Git. Public development history begins with the portable CLI.
+
+## Automatic routing
+
+After setup and restart, type a normal prompt. The local hook ranks relevant installed skill candidates. Run claude-boss audit to inspect its local inventory and claude-boss route "redesign the dashboard" to preview a decision. Claude decides whether to invoke a suggested skill and should report actual use. The inventory represents local configuration, which may differ from availability under managed policy.
+
+See NEXT_VERSION_PLAN.md for planned marketplace staging, verified usage reporting and benchmarking.

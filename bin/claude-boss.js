@@ -2,10 +2,12 @@
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
+import { inventory, route } from '../lib/router.js';
 import { spawnSync } from 'node:child_process';
 
 const dir = path.resolve(process.env.CLAUDE_CONFIG_DIR || path.join(os.homedir(), '.claude'));
 const settings = path.join(dir, 'settings.json');
+const runtime = path.join(dir, 'claude-boss-runtime');
 const stateFile = path.join(dir, 'claude-boss-state.json');
 const skill = path.join(dir, 'skills', 'claude-boss-router', 'SKILL.md');
 const profiles = {
@@ -38,7 +40,7 @@ const json = (file, object) => save(file, JSON.stringify(object,null,2)+'\n');
 function main() {
   const [command='help', profile='balanced', ...args] = process.argv.slice(2);
   if (command === 'help' || command === '--help') {
-    console.log('claude-boss setup [economy|balanced|quality]\nclaude-boss status\nclaude-boss restore\nclaude-boss run <profile> [prompt]');
+    console.log('claude-boss setup [economy|balanced|quality]\nclaude-boss status\nclaude-boss audit\nclaude-boss route <task>\nclaude-boss restore\nclaude-boss run <profile> [prompt]');
     return;
   }
   if (command === 'run') {
@@ -48,6 +50,11 @@ function main() {
     const result = spawnSync(process.platform === 'win32' ? 'claude.exe' : 'claude', flags, {stdio:'inherit'});
     if (result.error) throw Error('Could not start Claude Code. Install the native CLI and add it to PATH.');
     process.exitCode = result.status ?? 1;
+    return;
+  }
+  if (command === 'audit' || command === 'route') {
+    const available = inventory(dir,process.cwd());
+    console.log(JSON.stringify(command === 'audit' ? available : route([profile,...args].join(' '),available),null,2));
     return;
   }
   const current = read(settings,{});
@@ -66,11 +73,19 @@ function main() {
       const previous = prior?.applied[key];
       original[key] = prior && current[key] === previous ? prior.original[key] : {present:Object.hasOwn(current,key),value:current[key]};
     }
-    json(stateFile,{original,applied:next});
+    if (/["\r\n%$`]/.test(runtime)) throw Error('Claude config path contains characters unsupported by the hook launcher.');
+    const hookCommand = 'node "' + path.join(runtime,'hook.js').replaceAll('\\','/') + '"';
+    const hooks = {...current.hooks};
+    const entries = (hooks.UserPromptSubmit ?? []).filter(group =>
+      !prior?.hookCommand || group.hooks?.length !== 1 || group.hooks[0].command !== prior.hookCommand);
+    hooks.UserPromptSubmit = [...entries,{hooks:[{type:'command',command:hookCommand,timeout:3}]}];
+    for (const name of ['hook.js','router.js']) save(path.join(runtime,name), fs.readFileSync(new URL('../lib/'+name,import.meta.url),'utf8'));
+    json(path.join(runtime,'package.json'),{type:'module'});
+    json(stateFile,{original,applied:next,hookCommand,hadHooks:prior?.hadHooks ?? Object.hasOwn(current,'hooks'),hadSubmit:prior?.hadSubmit ?? Object.hasOwn(current.hooks ?? {},'UserPromptSubmit')});
     save(skill,router);
     const existing = fs.existsSync(instructions) ? fs.readFileSync(instructions,'utf8') : '';
     if (!existing.includes(marker)) save(instructions, existing + '\n' + directive);
-    json(settings,{...current,...next});
+    json(settings,{...current,...next,hooks});
     console.log('Applied '+profile+'. Restart Claude Code to load the router.');
     return;
   }
@@ -81,6 +96,13 @@ function main() {
       const item = prior.original[key];
       if (item.present) current[key] = item.value;
       else delete current[key];
+    }
+    if (prior.hookCommand && Array.isArray(current.hooks?.UserPromptSubmit)) {
+      const remaining = current.hooks.UserPromptSubmit.filter(group =>
+        group.hooks?.length !== 1 || group.hooks[0].command !== prior.hookCommand);
+      if (remaining.length || prior.hadSubmit) current.hooks.UserPromptSubmit = remaining;
+      else delete current.hooks.UserPromptSubmit;
+      if (!prior.hadHooks && !Object.keys(current.hooks).length) delete current.hooks;
     }
     json(settings,current);
     if (fs.existsSync(skill) && fs.readFileSync(skill,'utf8') === router) fs.unlinkSync(skill);
