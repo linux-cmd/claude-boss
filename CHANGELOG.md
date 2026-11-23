@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.8.0
+
+- Added capability catalog and task-scope routing explanations.
+
 ## 0.7.0
 
 - Added plugin dry runs, pinning, mutation journals and repair.
@@ -40,4 +44,5 @@ Routing suggests installed skills by task. It does not install marketplace plugi
 ## 0.1.0
 
 - Added three model profiles, a routing skill, and reversible settings.
+
 

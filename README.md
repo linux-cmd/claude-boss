@@ -14,7 +14,7 @@ The [free, portable CLAUDE BOSS Workflow skill](agensi/claude-boss-workflow/SKIL
 
 ## Install on Windows or Linux
 
-    npm install -g https://github.com/linux-cmd/claude-boss/releases/download/v0.7.0/claude-boss-0.7.0.tgz
+    npm install -g https://github.com/linux-cmd/claude-boss/releases/download/v0.8.0/claude-boss-0.8.0.tgz
     claude-boss setup balanced
     claude-boss status
 
@@ -75,3 +75,10 @@ For automatic rotation, set `"rotateOwned": true` in the policy. At launch, BOSS
 ## Preview and repair plugin changes
 
 Run `claude-boss plugin-plan "Redesign the dashboard"` for the selected IDs, local inventory, and proposed actions without mutating state. Add IDs to `pinnedPlugins` in the policy to exempt them from automatic disabling. BOSS journals each action before invoking Claude and checks native registry and local settings afterward. If interrupted, run `claude-boss plugin-repair` from the affected worktree. It reports the observed state and clears the journal without inferring ownership or rolling back changes. If a stale ownership lock remains, confirm the launcher has exited before removing it. Local configuration does not establish that a running session loaded a plugin.
+
+
+## Browse and explain routing
+
+Use claude-boss catalog design to list curated upstream references and locally configured matches. Use claude-boss explain "Plan only: redesign the dashboard and do not deploy" to see selected and deferred phases. Run setup again to refresh the routing hook.
+
+Catalog matches are advisory. In an open Claude session follow Claude's documented plugin reload flow when it reports pending changes. Forcing reload can incur an uncached request.
