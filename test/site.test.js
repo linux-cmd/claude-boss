@@ -87,7 +87,7 @@ test('free skill package has a standalone entrypoint and truthful marketplace st
   const listing = read('agensi/LISTING.md');
   const homepage = read('docs/index.html');
   const readme = read('README.md');
-  assert.match(skill, /^---\nname: claude-boss-workflow\n/m);
+  assert.match(skill, /^---\r?\nname: claude-boss-workflow\r?\n/m);
   assert.match(skill, /instruction-only/i);
   assert.match(listing, /FREE \(\$0\)/);
   assert.match(listing, /NOT PUBLISHED/);
