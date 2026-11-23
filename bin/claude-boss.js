@@ -2,6 +2,7 @@
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
+import { sessions, watch } from '../lib/watch.js';
 import { progress } from '../lib/progress.js';
 import { inventory, route } from '../lib/router.js';
 import { spawnSync } from 'node:child_process';
@@ -41,7 +42,7 @@ const json = (file, object) => save(file, JSON.stringify(object,null,2)+'\n');
 function main() {
   const [command='help', profile='balanced', ...args] = process.argv.slice(2);
   if (command === 'help' || command === '--help') {
-    console.log('claude-boss setup [economy|balanced|quality]\nclaude-boss status\nclaude-boss audit\nclaude-boss sessions\nclaude-boss progress <session.jsonl> [--watch] [--plan <checklist.md>]\nclaude-boss route <task>\nclaude-boss restore\nclaude-boss run <profile> [prompt]');
+    console.log('claude-boss setup [economy|balanced|quality]\nclaude-boss status\nclaude-boss audit\nclaude-boss sessions\nclaude-boss watch [--session <file>] [--plan <file>] [--once]\nclaude-boss progress <session.jsonl> [--watch] [--plan <checklist.md>]\nclaude-boss route <task>\nclaude-boss restore\nclaude-boss run <profile> [prompt]');
     return;
   }
   if (command === 'run') {
@@ -54,14 +55,20 @@ function main() {
     return;
   }
   if (command === 'sessions') {
-    const projects = path.join(dir,'projects');
-    const entries = fs.existsSync(projects) ? fs.readdirSync(projects,{withFileTypes:true}) : [];
-    const sessions = entries.filter(item => item.isDirectory()).flatMap(item => {
-      const folder = path.join(projects,item.name);
-      return fs.readdirSync(folder,{withFileTypes:true}).filter(file => file.isFile() && file.name.endsWith('.jsonl'))
-        .map(file => { const full = path.join(folder,file.name); return {path:full,updated:fs.statSync(full).mtimeMs}; });
-    });
-    console.log(JSON.stringify(sessions.sort((a,b) => b.updated-a.updated).slice(0,10),null,2));
+    console.log(JSON.stringify(sessions(dir).slice(0,10),null,2));
+    return;
+  }
+  if (command === 'watch') {
+    const options = process.argv.slice(3);
+    const values = {};
+    for (let i=0;i<options.length;i++) {
+      const flag = options[i];
+      if (flag === '--once') values.once = true;
+      else if ((flag === '--session' || flag === '--plan') && options[i+1] && !options[i+1].startsWith('--')) {
+        values[flag === '--session' ? 'file' : 'plan'] = options[++i];
+      } else throw Error('Usage: claude-boss watch [--session <file>] [--plan <file>] [--once]');
+    }
+    watch(dir,values);
     return;
   }
   if (command === 'progress') {
