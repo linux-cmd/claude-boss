@@ -1,1 +1,20 @@
-{"name":"claude-boss","version":"0.1.0","description":"Portable Claude Code optimization profiles and task routing","type":"module","bin":{"claude-boss":"bin/claude-boss.js"},"engines":{"node":">=20"},"files":["bin","CODEX.md","README.md"],"repository":"github:linux-cmd/claude-boss"}
+{
+  "name": "claude-boss",
+  "version": "0.2.0",
+  "description": "Portable Claude Code optimization profiles and task routing",
+  "type": "module",
+  "bin": {
+    "claude-boss": "bin/claude-boss.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "files": [
+    "bin",
+    "CODEX.md",
+    "README.md",
+    "lib",
+    "CHANGELOG.md"
+  ],
+  "repository": "github:linux-cmd/claude-boss"
+}
