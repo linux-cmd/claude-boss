@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.6.0
+
+- Added opt-in project-local plugin rotation with ownership checks.
+- Watch identifies MCP servers from observed tool results.
+
 ## 0.5.0
 
 - Added workspace changes, reported notes and local preview links to watch.
