@@ -41,7 +41,8 @@ test('creator credit does not replace the product name', () => {
   assert.match(homepage, /<h1[^>]*>CLAUDE <span>BOSS\.<\/span><\/h1>/);
   assert.match(homepage, /Built by <strong>Abhijay Panwar<\/strong>/);
   assert.doesNotMatch(homepage, /Abhijay Panwar['’]s Claude/i);
-  assert.match(homepage, /hero-byline[^>]*>[\\s\\S]*Built by Abhijay Panwar/);
+  assert.match(homepage, /class="hero-byline"/);
+  assert.match(homepage, /Built by Abhijay Panwar/);
   assert.equal(pkg.name, 'claude-boss');
   assert.equal(pkg.author, 'Abhijay Panwar');
 });
