@@ -8,7 +8,7 @@ A portable CLI for choosing Claude Code defaults and loading task-specific guida
 
 ## Install on Windows or Linux
 
-    npm install -g https://github.com/linux-cmd/claude-boss/releases/download/v0.4.0/claude-boss-0.4.0.tgz
+    npm install -g https://github.com/linux-cmd/claude-boss/releases/download/v0.5.0/claude-boss-0.5.0.tgz
     claude-boss setup balanced
     claude-boss status
 
@@ -46,3 +46,20 @@ The monitor makes no model calls. It reports observed tool results, returned ski
 ## Terminal dashboard
 
 Run `claude-boss watch` from the same project in a separate pane. Use `[` and `]` to switch sessions and `q` to quit. It reads BUILD_PLAN.md if present. Use `--plan` for another checklist, `--session` to pin a transcript and `--once` for a snapshot. Session matching uses the local Claude project directory naming convention.
+
+
+## Workspace evidence and plugin staging
+
+Run watch from the same Claude project to see up to eight Git working-tree changes. Add a BOSS_STATUS.md file in that directory. Lines prefixed with Decision:, Blocker:, Check:, and Preview: appear on the dashboard. Preview accepts localhost HTTP(S) links. Notes are reported as written. Watch does not check the server or generate notes itself.
+
+Optionally create claude-boss-policy.json in the Claude config directory:
+
+```json
+{"autoStage":true,"plugins":[{"intent":"billing","id":"revenuecat@RevenueCat"}]}
+```
+
+Supported intents are design, verification, billing, deployment, and database. Add only publisher and marketplace IDs you trust. The marketplace must already exist in Claude Code. With the policy enabled, claude-boss run balanced "Inspect my RevenueCat subscription setup" attempts to install up to two matches at local scope before starting Claude. It skips IDs already in the install registry and honors Claude's native installation and authentication gates. For a running session the hook continues to route already installed skills. Use Claude's plugin manager to disable or remove a staged plugin. The setup restore command manages BOSS settings and hooks only.
+
+## Measure token usage
+
+Run comparable tasks in clean sessions with the same model, effort and test conditions, first without BOSS and then with it. Verify both results against the same acceptance checks. Repeat cold and warm runs several times. Compare each pair with claude-boss compare baseline.jsonl candidate.jsonl. It reports raw token deltas by counter. Evaluate quality and variance before drawing a conclusion. Pro subscription quota, projected credits and ETA are unavailable.

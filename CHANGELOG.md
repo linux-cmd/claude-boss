@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.5.0
+
+- Added workspace changes, reported notes and local preview links to watch.
+- Added opt-in launch-time staging for approved marketplace plugins.
+- Added local token comparisons between complete transcripts.
+
 ## 0.4.0
 
 - Added interactive terminal watch with session switching and milestone snapshots.

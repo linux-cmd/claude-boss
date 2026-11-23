@@ -2,6 +2,7 @@
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
+import { stage } from '../lib/plugins.js';
 import { sessions, watch } from '../lib/watch.js';
 import { progress } from '../lib/progress.js';
 import { inventory, route } from '../lib/router.js';
@@ -42,16 +43,32 @@ const json = (file, object) => save(file, JSON.stringify(object,null,2)+'\n');
 function main() {
   const [command='help', profile='balanced', ...args] = process.argv.slice(2);
   if (command === 'help' || command === '--help') {
-    console.log('claude-boss setup [economy|balanced|quality]\nclaude-boss status\nclaude-boss audit\nclaude-boss sessions\nclaude-boss watch [--session <file>] [--plan <file>] [--once]\nclaude-boss progress <session.jsonl> [--watch] [--plan <checklist.md>]\nclaude-boss route <task>\nclaude-boss restore\nclaude-boss run <profile> [prompt]');
+    console.log('claude-boss setup [economy|balanced|quality]\nclaude-boss status\nclaude-boss audit\nclaude-boss compare <baseline.jsonl> <candidate.jsonl>\nclaude-boss sessions\nclaude-boss watch [--session <file>] [--plan <file>] [--once]\nclaude-boss progress <session.jsonl> [--watch] [--plan <checklist.md>]\nclaude-boss route <task>\nclaude-boss restore\nclaude-boss run <profile> [prompt]');
     return;
   }
   if (command === 'run') {
     if (!Object.hasOwn(profiles,profile)) throw Error('Unknown profile');
+    if (args.length === 1 && !args[0].startsWith('-')) {
+      try { stage(dir,args[0]); } catch (error) { console.error('Claude BOSS staging skipped: '+error.message); }
+    }
     const flags = ['--model',profiles[profile].model,'--effort',profiles[profile].effortLevel,...args];
     // Avoid cmd.exe interpolation. The native Claude Code installer provides claude.exe.
     const result = spawnSync(process.platform === 'win32' ? 'claude.exe' : 'claude', flags, {stdio:'inherit'});
     if (result.error) throw Error('Could not start Claude Code. Install the native CLI and add it to PATH.');
     process.exitCode = result.status ?? 1;
+    return;
+  }
+  if (command === 'compare') {
+    const [baseline,candidate,...extra] = process.argv.slice(3);
+    if (!baseline || !candidate || extra.length) throw Error('Usage: claude-boss compare <baseline.jsonl> <candidate.jsonl>');
+    const a = progress(baseline);
+    const b = progress(candidate);
+    if (a.partial || b.partial) throw Error('Comparison requires complete transcripts within the 16 MiB read limit.');
+    const changes = Object.fromEntries(Object.keys(a.tokens).map(key => {
+      const before = a.tokens[key], after = b.tokens[key];
+      return [key,{before,after,delta:before == null || after == null ? null : after-before}];
+    }));
+    console.log(JSON.stringify({baseline:a.session,candidate:b.session,changes},null,2));
     return;
   }
   if (command === 'sessions') {
