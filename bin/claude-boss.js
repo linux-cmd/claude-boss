@@ -2,6 +2,7 @@
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
+import { stage } from '../lib/plugins.js';
 import { sessions, watch } from '../lib/watch.js';
 import { progress } from '../lib/progress.js';
 import { inventory, route } from '../lib/router.js';
@@ -47,6 +48,9 @@ function main() {
   }
   if (command === 'run') {
     if (!Object.hasOwn(profiles,profile)) throw Error('Unknown profile');
+    if (args.length === 1 && !args[0].startsWith('-')) {
+      try { stage(dir,args[0]); } catch (error) { console.error('Claude BOSS staging skipped: '+error.message); }
+    }
     const flags = ['--model',profiles[profile].model,'--effort',profiles[profile].effortLevel,...args];
     // Avoid cmd.exe interpolation. The native Claude Code installer provides claude.exe.
     const result = spawnSync(process.platform === 'win32' ? 'claude.exe' : 'claude', flags, {stdio:'inherit'});
