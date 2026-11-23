@@ -14,7 +14,7 @@ The [free, portable CLAUDE BOSS Workflow skill](agensi/claude-boss-workflow/SKIL
 
 ## Install on Windows or Linux
 
-    npm install -g https://github.com/linux-cmd/claude-boss/releases/download/v0.8.0/claude-boss-0.8.0.tgz
+    npm install -g https://github.com/linux-cmd/claude-boss/releases/download/v0.9.0/claude-boss-0.9.0.tgz
     claude-boss setup balanced
     claude-boss status
 
@@ -82,3 +82,8 @@ Run `claude-boss plugin-plan "Redesign the dashboard"` for the selected IDs, loc
 Use claude-boss catalog design to list curated upstream references and locally configured matches. Use claude-boss explain "Plan only: redesign the dashboard and do not deploy" to see selected and deferred phases. Run setup again to refresh the routing hook.
 
 Catalog matches are advisory. In an open Claude session follow Claude's documented plugin reload flow when it reports pending changes. Forcing reload can incur an uncached request.
+
+
+## Local browser dashboard
+
+Run claude-boss dashboard from the same project directory as Claude Code and open the printed local URL. It shows matching sessions, checklist progress, tool outcomes, token counters, Git working-tree changes and reported workspace notes. It listens on 127.0.0.1 only, uses a private URL, and sends no model requests. Keep the URL local. Press Ctrl+C to close it.

@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.9.0
+
+- Added an opt-in local browser dashboard scoped to the current workspace.
+- Fixed checklist status parsing and prevented automatic checklist attribution to unrelated terminal sessions.
+
 ## 0.8.0
 
 - Added capability catalog and task-scope routing explanations.
@@ -44,5 +49,6 @@ Routing suggests installed skills by task. It does not install marketplace plugi
 ## 0.1.0
 
 - Added three model profiles, a routing skill, and reversible settings.
+
 
 
