@@ -48,12 +48,15 @@ function main() {
   }
   if (command === 'run') {
     if (!Object.hasOwn(profiles,profile)) throw Error('Unknown profile');
+    let unlock;
     if (args.length === 1 && !args[0].startsWith('-')) {
-      try { stage(dir,args[0]); } catch (error) { console.error('Claude BOSS staging skipped: '+error.message); }
+      try { unlock = stage(dir,args[0]); } catch (error) { console.error('Claude BOSS staging skipped: '+error.message); }
     }
     const flags = ['--model',profiles[profile].model,'--effort',profiles[profile].effortLevel,...args];
     // Avoid cmd.exe interpolation. The native Claude Code installer provides claude.exe.
-    const result = spawnSync(process.platform === 'win32' ? 'claude.exe' : 'claude', flags, {stdio:'inherit'});
+    let result;
+    try { result = spawnSync(process.platform === 'win32' ? 'claude.exe' : 'claude', flags, {stdio:'inherit'}); }
+    finally { unlock?.(); }
     if (result.error) throw Error('Could not start Claude Code. Install the native CLI and add it to PATH.');
     process.exitCode = result.status ?? 1;
     return;
