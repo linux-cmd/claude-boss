@@ -14,7 +14,7 @@ The [free, portable CLAUDE BOSS Workflow skill](agensi/claude-boss-workflow/SKIL
 
 ## Install on Windows or Linux
 
-    npm install -g https://github.com/linux-cmd/claude-boss/releases/download/v1.0.0-rc.1/claude-boss-1.0.0-rc.1.tgz
+    npm install -g https://github.com/linux-cmd/claude-boss/releases/download/v1.0.0/claude-boss-1.0.0.tgz
     claude-boss setup balanced
     claude-boss status
 
@@ -91,4 +91,4 @@ Run claude-boss dashboard from the same project directory as Claude Code and ope
 
 ## Benchmark a batch of matched tasks
 
-Run claude-boss benchmark pairs.json. Paths are relative to the manifest. Each array entry has baseline, candidate, baselinePassed and candidatePassed. Assign pass/fail using the same independent acceptance checks before comparing usage. Use equivalent tasks, model, effort and cache conditions. The report gives pass counts and median/range token deltas for pairs that both passed. It does not run Claude, infer correctness, or estimate Pro quota. Stable 1.0 savings claims require controlled live benchmarks.
+Run claude-boss benchmark pairs.json. Paths are relative to the manifest. Each array entry has baseline, candidate, baselinePassed and candidatePassed. Assign pass/fail using the same independent acceptance checks before comparing usage. Use equivalent tasks, model, effort and cache conditions. The report gives pass counts and median/range token deltas for pairs that both passed. It does not run Claude, infer correctness, or estimate Pro quota. Controlled live benchmarks are still needed to quantify Claude Pro savings.

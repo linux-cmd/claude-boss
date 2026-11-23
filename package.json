@@ -1,6 +1,6 @@
 {
   "name": "claude-boss",
-  "version": "1.0.0-rc.1",
+  "version": "1.0.0",
   "description": "CLAUDE BOSS — Claude Code profiles, local skill routing, and session progress",
   "type": "module",
   "bin": {
