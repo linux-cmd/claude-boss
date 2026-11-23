@@ -65,3 +65,19 @@ test('SVG brand assets use the CB monogram and correct creator credit', () => {
   assert.doesNotMatch(icon + banner, /\\bAndre\\b/i);
   assert.match(icon, /#f8c755/);
 });
+
+test('tab titles prioritize the product and clearly identify each page', () => {
+  const expected = {
+    'docs/index.html': 'CLAUDE BOSS | Claude Code Toolkit',
+    'docs/about.html': 'About | CLAUDE BOSS',
+    'docs/changelog.html': 'Changelog | CLAUDE BOSS',
+  };
+  for (const [file, title] of Object.entries(expected)) {
+    const html = read(file);
+    assert.ok(html.includes(`<title>${title}</title>`), `${file}: unexpected browser-tab title`);
+    assert.ok(html.includes(`property="og:title" content="${title}"`), `${file}: Open Graph title differs`);
+    assert.ok(html.includes('property="og:site_name" content="CLAUDE BOSS"'), `${file}: missing site brand`);
+    assert.ok(!title.includes('—'), `${file}: title uses an em dash`);
+    assert.ok(title.length <= 45, `${file}: title is too verbose`);
+  }
+});
