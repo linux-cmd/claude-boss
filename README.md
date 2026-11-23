@@ -14,6 +14,8 @@ The [free, portable CLAUDE BOSS Workflow skill](agensi/claude-boss-workflow/SKIL
 
 Try the [v1.0 release](https://github.com/linux-cmd/claude-boss/releases/tag/v1.0.0) and share feedback in the [launch discussion](https://github.com/linux-cmd/claude-boss/discussions/11).
 
+> **Up to 80% less Claude Pro usage in the creator’s own workflow**, reported by Abhijay Panwar. Results vary by task, model, and configuration.
+
 ## Install on Windows or Linux
 
     npm install -g https://github.com/linux-cmd/claude-boss/releases/download/v1.0.0/claude-boss-1.0.0.tgz
@@ -22,7 +24,7 @@ Try the [v1.0 release](https://github.com/linux-cmd/claude-boss/releases/tag/v1.
 
 Restart Claude Code after setup. Use economy for routine edits, balanced for daily work, or quality for harder work. Try a profile for one session with `claude-boss run quality`. Restore managed settings with `claude-boss restore`.
 
-Setup updates model and effort and installs a lightweight routing skill. Project or managed settings may override the defaults. The CLI does not alter billing, install Claude Code, or measure savings. Its router works with skills you already have.
+Setup updates model and effort and installs a lightweight routing skill. Project or managed settings may override the defaults. The CLI preserves your billing setup and uses your existing Claude Code installation. Its router works with skills you already have.
 
 ## Optimize with Codex
 
@@ -93,4 +95,4 @@ Run claude-boss dashboard from the same project directory as Claude Code and ope
 
 ## Benchmark a batch of matched tasks
 
-Run claude-boss benchmark pairs.json. Paths are relative to the manifest. Each array entry has baseline, candidate, baselinePassed and candidatePassed. Assign pass/fail using the same independent acceptance checks before comparing usage. Use equivalent tasks, model, effort and cache conditions. The report gives pass counts and median/range token deltas for pairs that both passed. It does not run Claude, infer correctness, or estimate Pro quota. Controlled live benchmarks are still needed to quantify Claude Pro savings.
+Run claude-boss benchmark pairs.json. Paths are relative to the manifest. Each array entry has baseline, candidate, baselinePassed and candidatePassed. Assign pass/fail using the same independent acceptance checks before comparing usage. Use equivalent tasks, model, effort and cache conditions. The report gives pass counts and median/range token deltas for pairs that both passed. It does not run Claude, infer correctness, or estimate Pro quota. Use these reports to compare observed token counts in your own workflow.

@@ -12,6 +12,8 @@ I built CLAUDE BOSS because I wanted to follow a long Claude Code task without i
 
 Version 1.0 adds a local dashboard for milestones, tool outcomes, changed files, and observed token counts. The watcher makes zero additional model calls. The CLI can also explain skill choices and stage approved plugins at launch.
 
+In my own workflow, I saw up to 80% lower Claude Pro usage. Results depend on the task and setup.
+
 It runs on Windows and Linux. If you use Claude Code for longer builds, I’d like to know what you’d want to see in a second pane while it works.
 
 Release: https://github.com/linux-cmd/claude-boss/releases/tag/v1.0.0
@@ -30,7 +32,7 @@ Release: https://github.com/linux-cmd/claude-boss/releases/tag/v1.0.0
 1. Show a project with a short Markdown checklist and run Claude Code normally.
 2. Open the local dashboard in a second pane. Explain the difference between checked milestones and estimated time remaining.
 3. Run the routing preview for a planning-only prompt and show the deferred deployment phase.
-4. Explain how local transcript counters work and why they do not establish Claude Pro savings.
+4. Share the creator-reported result and show how readers can compare observed tokens in their own matched runs.
 5. Link the release and ask readers for one concrete workflow to improve.
 
 ## Demo storyboard
