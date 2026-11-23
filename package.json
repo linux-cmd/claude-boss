@@ -1,7 +1,7 @@
 {
   "name": "claude-boss",
   "version": "0.3.0",
-  "description": "Portable Claude Code optimization profiles and task routing",
+  "description": "Abhijay Panwar's Claude BOSS — portable Claude Code profiles and skill routing",
   "type": "module",
   "bin": {
     "claude-boss": "bin/claude-boss.js"
@@ -19,5 +19,6 @@
   "repository": "github:linux-cmd/claude-boss",
   "scripts": {
     "test": "node --test"
-  }
+  },
+  "author": "Abhijay Panwar"
 }

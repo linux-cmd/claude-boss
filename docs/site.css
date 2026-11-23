@@ -2,3 +2,8 @@
 :root{color-scheme:dark;background:#141515;color:#eee9df;font:16px/1.5 system-ui}*{box-sizing:border-box}body{margin:0}main,nav,footer{max-width:1080px;margin:auto;padding:24px}nav{display:flex;justify-content:space-between;border-bottom:1px solid #45433e}a{color:#f8c755;text-underline-offset:4px}.hero{padding:90px 0 65px}.tag{font:600 .85rem monospace;color:#f8c755;letter-spacing:.12em}h1{font-size:clamp(3.6rem,11vw,8rem);line-height:.87;letter-spacing:-.085em;margin:23px 0}h1 span{color:#f8c755}p{color:#c1beb4;max-width:58ch}.cta{display:inline-block;margin-top:12px;padding:12px 18px;background:#f8c755;color:#141515;font-weight:750;text-decoration:none;border-radius:6px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}.card,pre{padding:20px;border:1px solid #45433e;border-radius:8px;background:#1d1f1e}h2{margin-top:38px}h3{margin:0}pre{white-space:pre-wrap;overflow-wrap:anywhere;color:#f8c755}footer{color:#c1beb4;border-top:1px solid #45433e;margin-top:50px}
 
 nav{gap:12px;flex-wrap:wrap}nav div{display:flex;gap:18px;flex-wrap:wrap}.subpage{max-width:760px}.subpage h1{font-size:clamp(3rem,8vw,5rem)}.subpage article{margin:20px 0}a:focus-visible{outline:2px solid #f8c755;outline-offset:5px}
+
+/* Shared subpage identity */
+.sitebrand{display:inline-flex;align-items:center;gap:10px;text-decoration:none;color:#eee9df;font-weight:750}.sitebrand strong{color:#f8c755}
+.subpage .card{line-height:1.7}.subpage h1{letter-spacing:-.06em}footer{font-size:.88rem}
+@media(max-width:600px){nav{padding:16px}main,footer{padding:18px}nav div{gap:12px}}

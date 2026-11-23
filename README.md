@@ -1,6 +1,10 @@
-# Claude BOSS
+![Abhijay Panwar's Claude BOSS](docs/brand-banner.svg)
 
-A portable CLI for choosing Claude Code defaults and loading task-specific guidance. Requires Node.js 20+ and the native Claude Code CLI on PATH for the launcher.
+# Abhijay Panwar's Claude BOSS
+
+**Created by Abhijay Panwar.** A portable CLI for choosing Claude Code defaults and loading task-specific guidance. Requires Node.js 20+ and the native Claude Code CLI on PATH for the launcher.
+
+[Website](https://linux-cmd.github.io/claude-boss/) · [Releases](https://github.com/linux-cmd/claude-boss/releases) · [Codex guide](CODEX.md)
 
 ## Install on Windows or Linux
 
@@ -24,6 +28,10 @@ After setup and restart, type a normal prompt. The local hook ranks relevant ins
 
 See NEXT_VERSION_PLAN.md for planned marketplace staging, verified usage reporting and benchmarking.
 
+## Creator
+
+Claude BOSS is independently developed by **Abhijay Panwar** and is not affiliated with Anthropic.
+
 ## Watch a build from a second terminal
 
 Run claude-boss sessions to find a transcript, then:
@@ -33,3 +41,4 @@ Run claude-boss sessions to find a transcript, then:
 Ask Claude for a Markdown checklist in the regular planning turn. For a Jarvis project, include architecture, a visual mockup, the core interaction, integrations, and end-to-end verification. Have Claude check each item after verifying it and record short decision notes and blockers in the plan. Open the local UI preview as soon as one exists.
 
 The monitor makes no model calls. It reports observed tool results, returned skill calls, token counters and checked milestones. It counts main-session assistant messages with usage in up to 16 MiB of transcript and flags partial reads. Milestone percentage counts checklist items. Pro credits, total projected cost, and ETA are unavailable.
+
