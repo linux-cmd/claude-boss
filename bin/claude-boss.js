@@ -5,7 +5,8 @@ import path from 'node:path';
 import { claudeExecutable, pluginPlan, repairPlugins, stage } from '../lib/plugins.js';
 import { sessions, watch } from '../lib/watch.js';
 import { progress } from '../lib/progress.js';
-import { inventory, route } from '../lib/router.js';
+import { catalogView } from '../lib/catalog.js';
+import { explainRoute, inventory, route } from '../lib/router.js';
 import { spawnSync } from 'node:child_process';
 
 const dir = path.resolve(process.env.CLAUDE_CONFIG_DIR || path.join(os.homedir(), '.claude'));
@@ -43,7 +44,7 @@ const json = (file, object) => save(file, JSON.stringify(object,null,2)+'\n');
 function main() {
   const [command='help', profile='balanced', ...args] = process.argv.slice(2);
   if (command === 'help' || command === '--help') {
-    console.log('claude-boss setup [economy|balanced|quality]\nclaude-boss status\nclaude-boss audit\nclaude-boss plugin-plan <task>\nclaude-boss plugin-repair\nclaude-boss compare <baseline.jsonl> <candidate.jsonl>\nclaude-boss sessions\nclaude-boss watch [--session <file>] [--plan <file>] [--once]\nclaude-boss progress <session.jsonl> [--watch] [--plan <checklist.md>]\nclaude-boss route <task>\nclaude-boss restore\nclaude-boss run <profile> [prompt]');
+    console.log('claude-boss setup [economy|balanced|quality]\nclaude-boss status\nclaude-boss audit\nclaude-boss catalog [query]\nclaude-boss explain <task>\nclaude-boss plugin-plan <task>\nclaude-boss plugin-repair\nclaude-boss compare <baseline.jsonl> <candidate.jsonl>\nclaude-boss sessions\nclaude-boss watch [--session <file>] [--plan <file>] [--once]\nclaude-boss progress <session.jsonl> [--watch] [--plan <checklist.md>]\nclaude-boss route <task>\nclaude-boss restore\nclaude-boss run <profile> [prompt]');
     return;
   }
   if (command === 'run') {
@@ -117,9 +118,12 @@ function main() {
     if (watch) setInterval(() => { try { render(); } catch (error) { console.error(error.message); } }, 2500);
     return;
   }
-  if (command === 'audit' || command === 'route') {
+  if (['audit','route','explain','catalog'].includes(command)) {
     const available = inventory(dir,process.cwd());
-    console.log(JSON.stringify(command === 'audit' ? available : route([profile,...args].join(' '),available),null,2));
+    const query = process.argv.slice(3).join(' ');
+    const result = command === 'audit' ? available : command === 'catalog' ? catalogView(query,available) :
+      command === 'explain' ? explainRoute(query,available) : route(query,available);
+    console.log(JSON.stringify(result,null,2));
     return;
   }
   const current = read(settings,{});
@@ -144,7 +148,7 @@ function main() {
     const entries = (hooks.UserPromptSubmit ?? []).filter(group =>
       !prior?.hookCommand || group.hooks?.length !== 1 || group.hooks[0].command !== prior.hookCommand);
     hooks.UserPromptSubmit = [...entries,{hooks:[{type:'command',command:hookCommand,timeout:3}]}];
-    for (const name of ['hook.js','router.js']) save(path.join(runtime,name), fs.readFileSync(new URL('../lib/'+name,import.meta.url),'utf8'));
+    for (const name of ['hook.js','router.js','catalog.js']) save(path.join(runtime,name), fs.readFileSync(new URL('../lib/'+name,import.meta.url),'utf8'));
     json(path.join(runtime,'package.json'),{type:'module'});
     json(stateFile,{original,applied:next,hookCommand,hadHooks:prior?.hadHooks ?? Object.hasOwn(current,'hooks'),hadSubmit:prior?.hadSubmit ?? Object.hasOwn(current.hooks ?? {},'UserPromptSubmit')});
     save(skill,router);
