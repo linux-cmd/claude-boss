@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.0
+
+- Stabilized local transcript accounting and paired benchmark workflows.
+- Flag incomplete and malformed transcript records and reuse unchanged usage snapshots.
+- Published stable installation instructions. No measured Claude Pro savings are claimed.
+
 ## 1.0.0-rc.1
 
 - Added incremental transcript reading and paired benchmark summaries.

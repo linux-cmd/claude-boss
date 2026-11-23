@@ -32,3 +32,17 @@ test('benchmark separates quality results from paired usage deltas',()=>{
   assert.equal(result.candidatePasses,1);
   assert.deepEqual(result.tokenDeltas.output_tokens,{sampleSize:1,median:-3,min:-3,max:-3});
 });
+
+test('partial rows resolve on append while malformed completed records stay flagged',()=>{
+  const root=fs.mkdtempSync(path.join(os.tmpdir(),'boss-corrupt-'));
+  const file=path.join(root,'session.jsonl');
+  const entry=row('first',7);
+  fs.writeFileSync(file,entry.slice(0,-1));
+  assert.equal(progress(file).partial,true);
+  fs.appendFileSync(file,'}\n');
+  assert.equal(progress(file).partial,false);
+  assert.equal(progress(file).tokens.output_tokens,7);
+  fs.appendFileSync(file,'null\n'+row('next',3)+'\n');
+  assert.equal(progress(file).partial,true);
+  assert.equal(progress(file).tokens.output_tokens,10);
+});
