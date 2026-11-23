@@ -13,6 +13,9 @@ const profiles = {
   balanced: {model:'sonnet', effortLevel:'medium'},
   quality: {model:'opus', effortLevel:'high'}
 };
+const instructions = path.join(dir, 'CLAUDE.md');
+const marker = '<!-- claude-boss -->';
+const directive = marker + '\nFor substantive coding tasks, invoke the claude-boss-router skill and follow project instructions.\n' + marker + '\n';
 const router = `---
 name: claude-boss-router
 description: Select focused skills and tools for substantive coding, design, debugging and deployment work.
@@ -65,6 +68,8 @@ function main() {
     }
     json(stateFile,{original,applied:next});
     save(skill,router);
+    const existing = fs.existsSync(instructions) ? fs.readFileSync(instructions,'utf8') : '';
+    if (!existing.includes(marker)) save(instructions, existing + '\n' + directive);
     json(settings,{...current,...next});
     console.log('Applied '+profile+'. Restart Claude Code to load the router.');
     return;
@@ -79,6 +84,10 @@ function main() {
     }
     json(settings,current);
     if (fs.existsSync(skill) && fs.readFileSync(skill,'utf8') === router) fs.unlinkSync(skill);
+    if (fs.existsSync(instructions)) {
+      const existing = fs.readFileSync(instructions,'utf8');
+      if (existing.includes(directive)) save(instructions, existing.replace('\n' + directive,''));
+    }
     fs.unlinkSync(stateFile);
     console.log('Restored managed settings.');
     return;
